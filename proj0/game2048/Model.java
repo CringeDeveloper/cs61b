@@ -125,14 +125,14 @@ public class Model extends Observable {
                         board.setViewingPerspective(Side.NORTH);
                         Tile t = board.tile(i, j);
                         if (t != null) {
-                            changed = moveMy(t, i, j, last);
+                            changed |= moveMy(t, i, j, last);
                         }
                     }
                     case "WEST" -> {
                         board.setViewingPerspective(Side.WEST);
                         Tile t = board.tile(i, j);
                         if (t != null) {
-                            changed = moveMy(t, i, j, last);
+                            changed |= moveMy(t, i, j, last);
                         }
                         board.setViewingPerspective(Side.NORTH);
                     }
@@ -140,7 +140,7 @@ public class Model extends Observable {
                         board.setViewingPerspective(Side.EAST);
                         Tile t = board.tile(i, j);
                         if (t != null) {
-                            changed = moveMy(t, i, j, last);
+                            changed |= moveMy(t, i, j, last);
                         }
                         board.setViewingPerspective(Side.NORTH);
                     }
@@ -148,7 +148,7 @@ public class Model extends Observable {
                         board.setViewingPerspective(Side.SOUTH);
                         Tile t = board.tile(i, j);
                         if (t != null) {
-                            changed = moveMy(t, i, j, last);
+                            changed |= moveMy(t, i, j, last);
                         }
                         board.setViewingPerspective(Side.NORTH);
                     }
