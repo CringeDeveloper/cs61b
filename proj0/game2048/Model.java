@@ -134,7 +134,6 @@ public class Model extends Observable {
                         if (t != null) {
                             changed |= moveMy(t, i, j, last);
                         }
-                        board.setViewingPerspective(Side.NORTH);
                     }
                     case "EAST" -> {
                         board.setViewingPerspective(Side.EAST);
@@ -142,7 +141,6 @@ public class Model extends Observable {
                         if (t != null) {
                             changed |= moveMy(t, i, j, last);
                         }
-                        board.setViewingPerspective(Side.NORTH);
                     }
                     case "SOUTH" -> {
                         board.setViewingPerspective(Side.SOUTH);
@@ -150,10 +148,10 @@ public class Model extends Observable {
                         if (t != null) {
                             changed |= moveMy(t, i, j, last);
                         }
-                        board.setViewingPerspective(Side.NORTH);
                     }
                 }
 
+                board.setViewingPerspective(Side.NORTH);
             }
         }
 
