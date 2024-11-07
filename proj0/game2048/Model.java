@@ -1,6 +1,7 @@
 package game2048;
 
 import java.util.Formatter;
+import java.util.Objects;
 import java.util.Observable;
 
 
@@ -113,6 +114,37 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
+
+        for (int i = 0; i < board.size(); i++) {
+            int last = board.size() - 1;
+
+            for (int j = board.size()-1; j > -1; j--) {
+                Tile t = board.tile(i, j);
+
+                if (t != null) {
+                    if (Objects.equals(side.name(), "NORTH")) { //TODO: change
+                        if (j != board.size() - 1) {
+                            if (board.tile(i, last) == null) { // move
+                                board.move(i, last, t);
+                                changed = true;
+                            } else if ((board.tile(i, last).value() != t.value()) && last - 1 == j) {
+                                last--;
+                            }
+                              else if (board.tile(i, last).value() != t.value()) { // move if other
+                                last--;
+                                board.move(i, last, t);
+                                changed = true;
+                            } else { // merge
+                                board.move(i, last, t);
+                                last--;
+                                score += t.value()*2;
+                                changed = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         checkGameOver();
         if (changed) {
