@@ -3,6 +3,7 @@ package game2048;
 import java.util.Formatter;
 import java.util.Objects;
 import java.util.Observable;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /** The state of a game of 2048.
@@ -116,33 +117,43 @@ public class Model extends Observable {
         // changed local variable to true.
 
         for (int i = 0; i < board.size(); i++) {
-            int last = board.size() - 1;
+            MyLast last = new MyLast(board.size() - 1);
 
             for (int j = board.size()-1; j > -1; j--) {
-                Tile t = board.tile(i, j);
-
-                if (t != null) {
-                    if (Objects.equals(side.name(), "NORTH")) { //TODO: change
-                        if (j != board.size() - 1) {
-                            if (board.tile(i, last) == null) { // move
-                                board.move(i, last, t);
-                                changed = true;
-                            } else if ((board.tile(i, last).value() != t.value()) && last - 1 == j) {
-                                last--;
-                            }
-                              else if (board.tile(i, last).value() != t.value()) { // move if other
-                                last--;
-                                board.move(i, last, t);
-                                changed = true;
-                            } else { // merge
-                                board.move(i, last, t);
-                                last--;
-                                score += t.value()*2;
-                                changed = true;
-                            }
+                switch (side.name()) {
+                    case "NORTH" -> {
+                        board.setViewingPerspective(Side.NORTH);
+                        Tile t = board.tile(i, j);
+                        if (t != null) {
+                            changed = moveMy(t, i, j, last);
                         }
                     }
+                    case "WEST" -> {
+                        board.setViewingPerspective(Side.WEST);
+                        Tile t = board.tile(i, j);
+                        if (t != null) {
+                            changed = moveMy(t, i, j, last);
+                        }
+                        board.setViewingPerspective(Side.NORTH);
+                    }
+                    case "EAST" -> {
+                        board.setViewingPerspective(Side.EAST);
+                        Tile t = board.tile(i, j);
+                        if (t != null) {
+                            changed = moveMy(t, i, j, last);
+                        }
+                        board.setViewingPerspective(Side.NORTH);
+                    }
+                    case "SOUTH" -> {
+                        board.setViewingPerspective(Side.SOUTH);
+                        Tile t = board.tile(i, j);
+                        if (t != null) {
+                            changed = moveMy(t, i, j, last);
+                        }
+                        board.setViewingPerspective(Side.NORTH);
+                    }
                 }
+
             }
         }
 
@@ -150,6 +161,31 @@ public class Model extends Observable {
         if (changed) {
             setChanged();
         }
+        return changed;
+    }
+
+    private boolean moveMy(Tile t, int i, int j, MyLast last) {
+        boolean changed = false;
+
+        if (j != board.size() - 1) {
+            if (board.tile(i, last.getLast()) == null) { // move
+                board.move(i, last.getLast(), t);
+                changed = true;
+            } else if ((board.tile(i, last.getLast()).value() != t.value()) && last.getLast() - 1 == j) {
+                last.setLast(last.getLast() - 1);
+            }
+            else if (board.tile(i, last.getLast()).value() != t.value()) { // move if other
+                last.setLast(last.getLast() - 1);
+                board.move(i, last.getLast(), t);
+                changed = true;
+            } else { // merge
+                board.move(i, last.getLast(), t);
+                last.setLast(last.getLast() - 1);
+                score += t.value()*2;
+                changed = true;
+            }
+        }
+
         return changed;
     }
 
@@ -266,4 +302,21 @@ public class Model extends Observable {
     public int hashCode() {
         return toString().hashCode();
     }
+}
+
+class MyLast {
+    public MyLast(int last) {
+        this.last = last;
+    }
+
+    public int getLast() {
+        return last;
+    }
+
+    public void setLast(int last) {
+        this.last = last;
+    }
+
+    int last;
+
 }
