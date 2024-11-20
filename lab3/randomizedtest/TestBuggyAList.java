@@ -10,8 +10,8 @@ import static org.junit.Assert.*;
 public class TestBuggyAList {
     @Test
     public void testThreeAddThreeRemove() {
-        AListNoResizing<Integer> correct = new AListNoResizing<Integer>();
-        BuggyAList<Integer> buggy = new BuggyAList<Integer>();
+        AListNoResizing<Integer> correct = new AListNoResizing<>();
+        BuggyAList<Integer> buggy = new BuggyAList<>();
 
         correct.addLast(1);
         correct.addLast(2);
@@ -26,5 +26,25 @@ public class TestBuggyAList {
         assertEquals(correct.removeLast(), buggy.removeLast());
         assertEquals(correct.removeLast(), buggy.removeLast());
         assertEquals(correct.removeLast(), buggy.removeLast());
+    }
+
+    @Test
+    public void randomizedTest() {
+        AListNoResizing<Integer> L = new AListNoResizing<>();
+
+        int N = 500;
+        for (int i = 0; i < N; i += 1) {
+            int operationNumber = StdRandom.uniform(0, 2);
+            if (operationNumber == 0) {
+                // addLast
+                int randVal = StdRandom.uniform(0, 100);
+                L.addLast(randVal);
+                System.out.println("addLast(" + randVal + ")");
+            } else if (operationNumber == 1) {
+                // size
+                int size = L.size();
+                System.out.println("size: " + size);
+            }
+        }
     }
 }
