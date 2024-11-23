@@ -1,12 +1,12 @@
 package deque;
 
-public class LinkedListDeque {
-    static class Node {
-        public int item = 0;
+public class LinkedListDeque<T> {
+    class Node {
+        public T item = null;
         public Node next = null;
         public Node prev = null;
 
-        public Node(int i, Node p, Node n) {
+        public Node(T i, Node p, Node n) {
             prev = p;
             next = n;
             item = i;
@@ -17,15 +17,15 @@ public class LinkedListDeque {
     private Node sentinelBack;
     private int size;
 
-//    public LinkedListDeque(int x) {
+//    public LinkedListDeque(t x) {
 //        sentinel = new Node(42, null, null);
 //        sentinel.next = new Node(x, null, null);
 //
 //        size = 1;
 //    }
     public LinkedListDeque() {
-        sentinelFront = new Node(42, null, null);
-        sentinelBack = new Node(42, null, null);
+        sentinelFront = new Node(null, null, null);
+        sentinelBack = new Node(null, null, null);
         sentinelFront.next = sentinelBack;
         sentinelBack.prev = sentinelFront;
 
@@ -52,13 +52,13 @@ public class LinkedListDeque {
         System.out.println();
     }
 
-    public void addFirst(int x) {
+    public void addFirst(T x) {
         sentinelFront.next = new Node(x, sentinelFront, sentinelFront.next);
         sentinelFront.next.next.prev = sentinelFront.next;
         size += 1;
     }
 
-    public void addLast(int x) {
+    public void addLast(T x) {
         sentinelBack.prev = new Node(x, sentinelBack.prev, sentinelBack);
         sentinelBack.prev.prev.next = sentinelBack.prev;
 
