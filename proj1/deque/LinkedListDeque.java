@@ -78,4 +78,18 @@ public class LinkedListDeque<T> {
         size -= 1;
         return toDelete.item;
     }
+
+    public T removeLast() {
+        if (sentinelBack.prev == sentinelFront) {
+            return null;
+        }
+        Node toDelete = sentinelBack.prev;
+        sentinelBack.prev = toDelete.prev;
+        toDelete.prev.next = toDelete.next;
+        toDelete.prev = null;
+        toDelete.next = null;
+
+        size -= 1;
+        return toDelete.item;
+    }
 }

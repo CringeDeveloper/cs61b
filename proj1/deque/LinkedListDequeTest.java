@@ -93,6 +93,16 @@ public class LinkedListDequeTest {
     }
 
     @Test
+    public void removeLast() {
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+        lld1.addFirst(10);
+        lld1.addLast(20);
+        lld1.removeLast();
+        lld1.printDeque();
+        assertFalse("lld1 should now contain 1 item", lld1.isEmpty());
+    }
+
+    @Test
     /* Tests removing from an empty deque */
     public void removeEmptyTest() {
 
