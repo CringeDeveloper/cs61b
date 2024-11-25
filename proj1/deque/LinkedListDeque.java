@@ -17,12 +17,6 @@ public class LinkedListDeque<T> {
     private Node sentinelBack;
     private int size;
 
-//    public LinkedListDeque(t x) {
-//        sentinel = new Node(42, null, null);
-//        sentinel.next = new Node(x, null, null);
-//
-//        size = 1;
-//    }
     public LinkedListDeque() {
         sentinelFront = new Node(null, null, null);
         sentinelBack = new Node(null, null, null);
