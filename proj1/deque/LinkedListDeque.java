@@ -105,4 +105,21 @@ public class LinkedListDeque<T> {
 
         return temp.item;
     }
+
+    public T getRecursive(int index) {
+        if (index + 1 > size || index < 0) {
+            return null;
+        }
+        Node temp = sentinelFront.next;
+
+        return getRecursiveIterator(index, temp);
+    }
+
+    private T getRecursiveIterator(int index, Node node) {
+        if (index == 0) {
+            return node.item;
+        } else {
+            return getRecursiveIterator(index - 1, node.next);
+        }
+    }
 }
