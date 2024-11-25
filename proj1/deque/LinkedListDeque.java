@@ -92,4 +92,17 @@ public class LinkedListDeque<T> {
         size -= 1;
         return toDelete.item;
     }
+
+    public T get(int index) {
+        if (index + 1 > size || index < 0) {
+            return null;
+        }
+
+        Node temp = sentinelFront.next;
+        for(int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+
+        return temp.item;
+    }
 }
