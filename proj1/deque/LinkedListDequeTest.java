@@ -33,6 +33,21 @@ public class LinkedListDequeTest {
     }
 
     @Test
+    public void printTypes() {
+        LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
+        LinkedListDeque<Integer> lld2 = new LinkedListDeque<Integer>();
+        LinkedListDeque<Double> lld3 = new LinkedListDeque<Double>();
+
+        lld1.addFirst("hello");
+        lld2.addFirst(1);
+        lld3.addFirst(1.12);
+
+        lld1.printDeque();
+        lld2.printDeque();
+        lld3.printDeque();
+    }
+
+    @Test
     public void addOnlyLast() {
         LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
         assertTrue("A newly initialized LLDeque should be empty", lld1.isEmpty());

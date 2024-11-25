@@ -45,7 +45,7 @@ public class LinkedListDeque<T> {
         Node temp = sentinelFront.next;
 
         for(int i = 0; i < size; i++) {
-            System.out.print(temp.item + " ");
+            System.out.print(temp.item.toString() + " ");
             temp = temp.next;
         }
 
