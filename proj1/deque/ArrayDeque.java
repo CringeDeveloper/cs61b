@@ -3,10 +3,16 @@ package deque;
 public class ArrayDeque<T> {
     T[] items;
     int size;
+    int firstNext;
+    int lastNext;
+    int cap;
 
     public ArrayDeque() {
         size = 0;
         items = (T[]) new Object[8];
+        firstNext = 0;
+        lastNext = 1;
+        cap = 8;
     }
 
     public boolean isEmpty() {
@@ -18,16 +24,45 @@ public class ArrayDeque<T> {
     }
 
     public void addLast(T item) {
-        items[size] = item;
+        if (size == cap) {
+            resize();
+        }
+        items[lastNext] = item;
+
+        if (lastNext == cap - 1) {
+            lastNext = 0;
+        } else {
+            lastNext += 1;
+        }
+
+        size += 1;
+    }
+
+    public void addFirst(T item) {
+        if (size == cap) {
+            resize();
+        }
+        items[firstNext] = item;
+
+        if (firstNext == 0) {
+            firstNext = cap - 1;
+        } else {
+            firstNext -= 1;
+        }
 
         size += 1;
     }
 
     public T get(int index) {
-        if (index + 1 > size) {
-            return null;
+        if (firstNext + index + 1 >= cap) {
+            return items[Math.abs(cap - firstNext - index - 1)];
         }
 
-        return items[index];
+        return items[index + firstNext + 1];
+    }
+
+
+    public void resize() {
+
     }
 }
