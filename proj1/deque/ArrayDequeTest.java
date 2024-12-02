@@ -28,6 +28,30 @@ public class ArrayDequeTest {
     }
 
     @Test
+    public void removeFirst() {
+        ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
+        arr.addFirst(1);
+        arr.addFirst(2);
+        arr.addFirst(3);
+        arr.addFirst(4);
+        arr.addFirst(5);
+        arr.addFirst(6);
+        arr.addFirst(7);
+        arr.addFirst(8);
+        assertEquals(8, (int)arr.removeFirst());
+        assertEquals(7, (int)arr.removeFirst());
+        assertEquals(6, (int)arr.removeFirst());
+        assertEquals(5, (int)arr.removeFirst());
+        assertEquals(4, (int)arr.removeFirst());
+        assertEquals(3, (int)arr.removeFirst());
+        assertEquals(2, (int)arr.removeFirst());
+        assertEquals(1, (int)arr.removeFirst());
+        assertNull(arr.removeFirst());
+        assertNull(arr.removeFirst());
+        assertEquals(0, arr.size());
+    }
+
+    @Test
     public void add() {
         ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
         arr.addLast(1);

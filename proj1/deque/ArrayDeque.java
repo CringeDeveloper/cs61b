@@ -53,6 +53,19 @@ public class ArrayDeque<T> {
         size += 1;
     }
 
+    public T removeFirst() {
+        if (size == 0) {
+            return null;
+        } else if (firstNext + 1 >= cap) {
+            firstNext = 0;
+        } else {
+            firstNext += 1;
+        }
+
+        size -= 1;
+        return items[firstNext];
+    }
+
     public T get(int index) {
         if (firstNext + index + 1 >= cap) {
             return items[Math.abs(cap - firstNext - index - 1)];
