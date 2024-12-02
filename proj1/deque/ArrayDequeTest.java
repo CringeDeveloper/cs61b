@@ -124,5 +124,8 @@ public class ArrayDequeTest {
         assertEquals(8, arr.size());
         assertFalse(arr.isEmpty());
         arr.resize();
+        arr.resize();
+        assertEquals(8, arr.size());
+        assertEquals(8, arr.size());
     }
 }

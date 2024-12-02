@@ -92,10 +92,20 @@ public class ArrayDeque<T> {
         T[] newArr = (T[]) new Object[cap * 2];
 
         int i = 0;
-        while (i != lastNext - 1) {
+        while (i < lastNext) {
             newArr[i] = items[i];
             i++;
         }
-        System.out.println("temp");
+
+        int j = lastNext + cap;
+        while (i < cap) {
+            newArr[j] = items[i];
+            j++;
+            i++;
+        }
+
+        firstNext = firstNext + cap;
+        cap = cap * 2;
+        items = newArr;
     }
 }
