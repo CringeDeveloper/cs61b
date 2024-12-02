@@ -23,21 +23,6 @@ public class ArrayDeque<T> {
         return size;
     }
 
-    public void addLast(T item) {
-        if (size == cap) {
-            resize();
-        }
-        items[lastNext] = item;
-
-        if (lastNext == cap - 1) {
-            lastNext = 0;
-        } else {
-            lastNext += 1;
-        }
-
-        size += 1;
-    }
-
     public void addFirst(T item) {
         if (size == cap) {
             resize();
@@ -48,6 +33,21 @@ public class ArrayDeque<T> {
             firstNext = cap - 1;
         } else {
             firstNext -= 1;
+        }
+
+        size += 1;
+    }
+
+    public void addLast(T item) {
+        if (size == cap) {
+            resize();
+        }
+        items[lastNext] = item;
+
+        if (lastNext == cap - 1) {
+            lastNext = 0;
+        } else {
+            lastNext += 1;
         }
 
         size += 1;
