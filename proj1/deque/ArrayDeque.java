@@ -25,7 +25,7 @@ public class ArrayDeque<T> {
 
     public void addFirst(T item) {
         if (size == cap) {
-            resize();
+            resizeUp();
         }
         items[firstNext] = item;
 
@@ -40,7 +40,7 @@ public class ArrayDeque<T> {
 
     public void addLast(T item) {
         if (size == cap) {
-            resize();
+            resizeUp();
         }
         items[lastNext] = item;
 
@@ -88,7 +88,7 @@ public class ArrayDeque<T> {
     }
 
 
-    public void resize() {
+    public void resizeUp() {
         T[] newArr = (T[]) new Object[cap * 2];
 
         int i = 0;
