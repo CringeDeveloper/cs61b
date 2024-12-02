@@ -89,7 +89,15 @@ public class ArrayDeque<T> {
 
 
     public void resizeUp() {
-        T[] newArr = (T[]) new Object[cap * 2];
+        resize(cap * 2);
+    }
+
+    public void resizeDown() {
+        resize(cap / 2);
+    }
+
+    private void resize(int newCap) {
+        T[] newArr = (T[]) new Object[newCap];
 
         int i = 0;
         while (i < lastNext) {
@@ -105,7 +113,7 @@ public class ArrayDeque<T> {
         }
 
         firstNext = firstNext + cap;
-        cap = cap * 2;
+        cap = newCap;
         items = newArr;
     }
 }
