@@ -52,6 +52,30 @@ public class ArrayDequeTest {
     }
 
     @Test
+    public void removeLast() {
+        ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
+        arr.addLast(1);
+        arr.addLast(2);
+        arr.addLast(3);
+        arr.addLast(4);
+        arr.addLast(5);
+        arr.addLast(6);
+        arr.addLast(7);
+        arr.addLast(8);
+        assertEquals(8, (int)arr.removeLast());
+        assertEquals(7, (int)arr.removeLast());
+        assertEquals(6, (int)arr.removeLast());
+        assertEquals(5, (int)arr.removeLast());
+        assertEquals(4, (int)arr.removeLast());
+        assertEquals(3, (int)arr.removeLast());
+        assertEquals(2, (int)arr.removeLast());
+        assertEquals(1, (int)arr.removeLast());
+        assertNull(arr.removeLast());
+        assertNull(arr.removeLast());
+        assertEquals(0, arr.size());
+    }
+
+    @Test
     public void add() {
         ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
         arr.addLast(1);
