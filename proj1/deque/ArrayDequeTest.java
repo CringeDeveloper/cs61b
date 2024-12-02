@@ -1,6 +1,7 @@
 package deque;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class ArrayDequeTest {
@@ -52,13 +53,13 @@ public class ArrayDequeTest {
         arr.addFirst(0);
         arr.addLast(6);
         assertEquals(7, arr.size);
-        assertEquals(0, (int)arr.get(0));
-        assertEquals(1, (int)arr.get(1));
-        assertEquals(2, (int)arr.get(2));
-        assertEquals(3, (int)arr.get(3));
-        assertEquals(4, (int)arr.get(4));
-        assertEquals(5, (int)arr.get(5));
-        assertEquals(6, (int)arr.get(6));
+        assertEquals(0, (int) arr.get(0));
+        assertEquals(1, (int) arr.get(1));
+        assertEquals(2, (int) arr.get(2));
+        assertEquals(3, (int) arr.get(3));
+        assertEquals(4, (int) arr.get(4));
+        assertEquals(5, (int) arr.get(5));
+        assertEquals(6, (int) arr.get(6));
     }
 
     @Test
