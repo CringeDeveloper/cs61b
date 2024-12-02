@@ -63,5 +63,17 @@ public class ArrayDequeTest {
 
     @Test
     public void resize() {
+        ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
+        arr.addLast(1);
+        arr.addLast(2);
+        arr.addLast(3);
+        arr.addLast(4);
+        arr.addFirst(5);
+        arr.addFirst(6);
+        arr.addFirst(7);
+        arr.addFirst(8);
+        assertEquals(8, arr.size);
+        assertFalse(arr.isEmpty());
+        arr.resize();
     }
 }

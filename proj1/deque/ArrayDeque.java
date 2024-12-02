@@ -63,6 +63,13 @@ public class ArrayDeque<T> {
 
 
     public void resize() {
+        T[] newArr = (T[]) new Object[cap * 2];
 
+        int i = 0;
+        while (i != lastNext - 1) {
+            newArr[i] = items[i];
+            i++;
+        }
+        System.out.println("temp");
     }
 }
