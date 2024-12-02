@@ -1,11 +1,11 @@
 package deque;
 
 public class ArrayDeque<T> {
-    T[] items;
-    int size;
-    int firstNext;
-    int lastNext;
-    int cap;
+    private T[] items;
+    private int size;
+    private int firstNext;
+    private int lastNext;
+    private int cap;
 
     public ArrayDeque() {
         size = 0;
