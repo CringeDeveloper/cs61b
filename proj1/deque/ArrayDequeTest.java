@@ -127,4 +127,19 @@ public class ArrayDequeTest {
         assertEquals(9, arr.size());
         assertEquals(16, arr.cap());
     }
+
+    @Test
+    public void resizeDown() {
+        ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
+        for (int i = 0; i < 33; i++) {
+            arr.addFirst(1);
+        }
+        assertEquals(33, arr.size());
+        assertEquals(64, arr.cap());
+        for (int i = 0; i < 18; i++) {
+            arr.removeFirst();
+        }
+        assertEquals(15, arr.size());
+        assertEquals(32, arr.cap());
+    }
 }

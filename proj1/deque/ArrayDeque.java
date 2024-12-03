@@ -60,7 +60,7 @@ public class ArrayDeque<T> {
     public T removeFirst() {
         if (size == 0) {
             return null;
-        } else if (cap / size <= 4) {
+        } else if (cap / size >= 4) {
             resizeDown();
         } else if (firstNext + 1 >= cap) {
             firstNext = 0;
@@ -96,15 +96,7 @@ public class ArrayDeque<T> {
     }
 
     private void resizeUp() {
-        resize(cap * 2);
-    }
-
-    private void resizeDown() {
-        resize(cap / 2);
-    }
-
-    private void resize(int newCap) {
-        T[] newArr = (T[]) new Object[newCap];
+        T[] newArr = (T[]) new Object[cap * 2];
 
         int i = 0;
         while (i < lastNext) {
@@ -120,7 +112,28 @@ public class ArrayDeque<T> {
         }
 
         firstNext = firstNext + cap;
-        cap = newCap;
+        cap = cap * 2;
+        items = newArr;
+    }
+
+    private void resizeDown() {
+        T[] newArr = (T[]) new Object[cap / 2];
+
+        int i = 0;
+        while (i < lastNext) {
+            newArr[i] = items[i];
+            i++;
+        }
+
+        int j = firstNext - cap / 2;
+        while (j < cap / 2) {
+            newArr[j] = items[i];
+            j++;
+            i++;
+        }
+
+        firstNext = cap - firstNext;
+        cap = cap / 2;
         items = newArr;
     }
 }
