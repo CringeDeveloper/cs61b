@@ -2,6 +2,8 @@ package deque;
 
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 public class ArrayDequeTest {
@@ -38,14 +40,14 @@ public class ArrayDequeTest {
         arr.addFirst(6);
         arr.addFirst(7);
         arr.addFirst(8);
-        assertEquals(8, (int)arr.removeFirst());
-        assertEquals(7, (int)arr.removeFirst());
-        assertEquals(6, (int)arr.removeFirst());
-        assertEquals(5, (int)arr.removeFirst());
-        assertEquals(4, (int)arr.removeFirst());
-        assertEquals(3, (int)arr.removeFirst());
-        assertEquals(2, (int)arr.removeFirst());
-        assertEquals(1, (int)arr.removeFirst());
+        assertEquals(8, (int) arr.removeFirst());
+        assertEquals(7, (int) arr.removeFirst());
+        assertEquals(6, (int) arr.removeFirst());
+        assertEquals(5, (int) arr.removeFirst());
+        assertEquals(4, (int) arr.removeFirst());
+        assertEquals(3, (int) arr.removeFirst());
+        assertEquals(2, (int) arr.removeFirst());
+        assertEquals(1, (int) arr.removeFirst());
         assertNull(arr.removeFirst());
         assertNull(arr.removeFirst());
         assertEquals(0, arr.size());
@@ -62,14 +64,14 @@ public class ArrayDequeTest {
         arr.addLast(6);
         arr.addLast(7);
         arr.addLast(8);
-        assertEquals(8, (int)arr.removeLast());
-        assertEquals(7, (int)arr.removeLast());
-        assertEquals(6, (int)arr.removeLast());
-        assertEquals(5, (int)arr.removeLast());
-        assertEquals(4, (int)arr.removeLast());
-        assertEquals(3, (int)arr.removeLast());
-        assertEquals(2, (int)arr.removeLast());
-        assertEquals(1, (int)arr.removeLast());
+        assertEquals(8, (int) arr.removeLast());
+        assertEquals(7, (int) arr.removeLast());
+        assertEquals(6, (int) arr.removeLast());
+        assertEquals(5, (int) arr.removeLast());
+        assertEquals(4, (int) arr.removeLast());
+        assertEquals(3, (int) arr.removeLast());
+        assertEquals(2, (int) arr.removeLast());
+        assertEquals(1, (int) arr.removeLast());
         assertNull(arr.removeLast());
         assertNull(arr.removeLast());
         assertEquals(0, arr.size());
@@ -132,7 +134,7 @@ public class ArrayDequeTest {
     public void resizeDown() {
         ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
         for (int i = 0; i < 33; i++) {
-            arr.addFirst(1);
+            arr.addFirst(i);
         }
         assertEquals(33, arr.size());
         assertEquals(64, arr.cap());
@@ -141,5 +143,38 @@ public class ArrayDequeTest {
         }
         assertEquals(15, arr.size());
         assertEquals(32, arr.cap());
+    }
+
+    @Test
+    public void addFirstRemoveLastResize() {
+        ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
+        for (int i = 0; i < 33; i++) {
+            arr.addFirst(i);
+        }
+        assertEquals(33, arr.size());
+        assertEquals(64, arr.cap());
+        for (int i = 0; i < 18; i++) {
+            arr.removeLast();
+        }
+        assertEquals(15, arr.size());
+        assertEquals(32, arr.cap());
+    }
+
+    @Test
+    public void massive() {
+        ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
+        Random rand = new Random();
+        for (int i = 0; i < 100000; i++) {
+            int r = rand.nextInt(4);
+            if (r == 0) {
+                arr.addFirst(1);
+            } else if (r == 1) {
+                arr.addLast(1);
+            } else if (r == 2) {
+                arr.removeFirst();
+            } else if (r == 3) {
+                arr.removeLast();
+            }
+        }
     }
 }

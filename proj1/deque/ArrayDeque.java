@@ -102,20 +102,12 @@ public class ArrayDeque<T> {
     private void resizeUp() {
         T[] newArr = (T[]) new Object[cap * 2];
 
-        int i = 0;
-        while (i < lastNext) {
-            newArr[i] = items[i];
-            i++;
+        for (int i = 0; i < size; i++) {
+            newArr[i] = get(i);
         }
 
-        int j = lastNext + cap;
-        while (i < cap) {
-            newArr[j] = items[i];
-            j++;
-            i++;
-        }
-
-        firstNext = firstNext + cap;
+        firstNext = cap * 2 - 1;
+        lastNext = size;
         cap = cap * 2;
         items = newArr;
     }
@@ -123,21 +115,12 @@ public class ArrayDeque<T> {
     private void resizeDown() {
         T[] newArr = (T[]) new Object[cap / 2];
 
-        int i = 0;
-        while (i < lastNext) {
-            newArr[i] = items[i];
-            i++;
+        for (int i = 0; i < size; i++) {
+            newArr[i] = get(i);
         }
 
-        int j = Math.abs(firstNext - cap / 2 + 1);
-        i = firstNext + 1;
-        while (j < cap / 2) {
-            newArr[j] = items[i];
-            j++;
-            i++;
-        }
-
-        firstNext = cap - firstNext;
+        firstNext = cap/2-1;
+        lastNext = size;
         cap = cap / 2;
         items = newArr;
     }
