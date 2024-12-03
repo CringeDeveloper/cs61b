@@ -75,7 +75,7 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if (size == 0) {
             return null;
-        } else if (cap / size <= 4) {
+        } else if (cap / size >= 4) {
             resizeDown();
         } else if (lastNext - 1 < 0) {
             lastNext = cap - 1;
