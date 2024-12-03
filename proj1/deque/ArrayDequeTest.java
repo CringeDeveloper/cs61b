@@ -123,9 +123,8 @@ public class ArrayDequeTest {
         arr.addFirst(8);
         assertEquals(8, arr.size());
         assertFalse(arr.isEmpty());
-        arr.resizeUp();
-        arr.resizeUp();
-        assertEquals(8, arr.size());
-        assertEquals(8, arr.size());
+        arr.addFirst(1);
+        assertEquals(9, arr.size());
+        assertEquals(16, arr.cap());
     }
 }

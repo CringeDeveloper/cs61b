@@ -23,6 +23,10 @@ public class ArrayDeque<T> {
         return size;
     }
 
+    public int cap() {
+        return cap;
+    }
+
     public void addFirst(T item) {
         if (size == cap) {
             resizeUp();
@@ -56,6 +60,8 @@ public class ArrayDeque<T> {
     public T removeFirst() {
         if (size == 0) {
             return null;
+        } else if (cap / size <= 4) {
+            resizeDown();
         } else if (firstNext + 1 >= cap) {
             firstNext = 0;
         } else {
@@ -69,6 +75,8 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if (size == 0) {
             return null;
+        } else if (cap / size <= 4) {
+            resizeDown();
         } else if (lastNext - 1 < 0) {
             lastNext = cap - 1;
         } else {
@@ -87,12 +95,11 @@ public class ArrayDeque<T> {
         return items[index + firstNext + 1];
     }
 
-
-    public void resizeUp() {
+    private void resizeUp() {
         resize(cap * 2);
     }
 
-    public void resizeDown() {
+    private void resizeDown() {
         resize(cap / 2);
     }
 
