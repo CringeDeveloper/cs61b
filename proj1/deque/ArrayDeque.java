@@ -2,6 +2,8 @@ package deque;
 
 import org.hamcrest.Factory;
 
+import java.util.Objects;
+
 public class ArrayDeque<T> {
     private T[] items;
     private int size;
@@ -110,7 +112,7 @@ public class ArrayDeque<T> {
         }
 
         for (int i = 0; i < size; i++) {
-            if (((ArrayDeque<?>) o).get(i) != get(i)) {
+            if (!Objects.equals(((ArrayDeque<?>) o).get(i), get(i))) {
                 return false;
             }
         }

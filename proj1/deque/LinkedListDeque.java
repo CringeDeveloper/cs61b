@@ -1,5 +1,7 @@
 package deque;
 
+import java.util.Objects;
+
 public class LinkedListDeque<T> {
     class Node {
         public T item = null;
@@ -115,5 +117,22 @@ public class LinkedListDeque<T> {
         } else {
             return getRecursiveIterator(index - 1, node.next);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof LinkedListDeque)) {
+            return false;
+        } else if (((LinkedListDeque<?>) o).size() != size) {
+            return false;
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (!Objects.equals(((LinkedListDeque<?>) o).get(i), get(i))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

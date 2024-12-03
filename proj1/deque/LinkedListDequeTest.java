@@ -205,4 +205,20 @@ public class LinkedListDequeTest {
         assertEquals(3, (int)lld1.getRecursive(2));
         assertNull(lld1.get(3));
     }
+
+    @Test
+    public void equals() {
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+        LinkedListDeque<Integer> lld2 = new LinkedListDeque<Integer>();
+        LinkedListDeque<Integer> lld3 = new LinkedListDeque<Integer>();
+
+        for (int i = 0; i < 10000; i++) {
+            lld1.addFirst(i);
+            lld2.addFirst(i);
+            lld3.addFirst(i + 1);
+        }
+
+        assertTrue(lld1.equals(lld2));
+        assertFalse(lld1.equals(lld3));
+    }
 }
