@@ -62,7 +62,9 @@ public class ArrayDeque<T> {
             return null;
         } else if (cap / size >= 4) {
             resizeDown();
-        } else if (firstNext + 1 >= cap) {
+        }
+
+        if (firstNext + 1 >= cap) {
             firstNext = 0;
         } else {
             firstNext += 1;
@@ -77,7 +79,9 @@ public class ArrayDeque<T> {
             return null;
         } else if (cap / size >= 4) {
             resizeDown();
-        } else if (lastNext - 1 < 0) {
+        }
+
+        if (lastNext - 1 < 0) {
             lastNext = cap - 1;
         } else {
             lastNext -= 1;
@@ -125,7 +129,8 @@ public class ArrayDeque<T> {
             i++;
         }
 
-        int j = firstNext - cap / 2;
+        int j = Math.abs(firstNext - cap / 2 + 1);
+        i = firstNext + 1;
         while (j < cap / 2) {
             newArr[j] = items[i];
             j++;
