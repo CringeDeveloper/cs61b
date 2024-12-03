@@ -193,4 +193,22 @@ public class ArrayDequeTest {
             }
         }
     }
+
+    @Test
+    public void massiveString() {
+        ArrayDeque<String> arr = new ArrayDeque<String>();
+        Random rand = new Random();
+        for (int i = 0; i < 100000; i++) {
+            int r = rand.nextInt(4);
+            if (r == 0) {
+                arr.addFirst("1");
+            } else if (r == 1) {
+                arr.addLast("1");
+            } else if (r == 2) {
+                arr.removeFirst();
+            } else if (r == 3) {
+                arr.removeLast();
+            }
+        }
+    }
 }
