@@ -161,6 +161,22 @@ public class ArrayDequeTest {
     }
 
     @Test
+    public void equals() {
+        ArrayDeque<Integer> arr1 = new ArrayDeque<Integer>();
+        ArrayDeque<Integer> arr2 = new ArrayDeque<Integer>();
+        ArrayDeque<Integer> arr3 = new ArrayDeque<Integer>();
+
+        for (int i = 0; i < 100; i++) {
+            arr1.addFirst(i);
+            arr2.addFirst(i);
+            arr3.addFirst(i + 1);
+        }
+
+        assertTrue(arr1.equals(arr2));
+        assertFalse(arr2.equals(arr3));
+    }
+
+    @Test
     public void massive() {
         ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
         Random rand = new Random();

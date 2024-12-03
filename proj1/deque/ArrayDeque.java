@@ -1,5 +1,7 @@
 package deque;
 
+import org.hamcrest.Factory;
+
 public class ArrayDeque<T> {
     private T[] items;
     private int size;
@@ -97,6 +99,23 @@ public class ArrayDeque<T> {
         }
 
         return items[index + firstNext + 1];
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof ArrayDeque)) {
+            return false;
+        } else if (((ArrayDeque<?>) o).size != size) {
+            return false;
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (((ArrayDeque<?>) o).get(i) != get(i)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void resizeUp() {
