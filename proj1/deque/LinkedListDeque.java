@@ -34,10 +34,6 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         return size;
     }
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
     public void printDeque() {
         Node temp = sentinelFront.next;
 
@@ -122,7 +118,7 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof LinkedListDeque)) {
+        if (!(o instanceof Deque)) {
             return false;
         } else if (((LinkedListDeque<?>) o).size() != size) {
             return false;

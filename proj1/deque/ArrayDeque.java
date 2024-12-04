@@ -20,10 +20,6 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         cap = 8;
     }
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
     public int size() {
         return size;
     }
@@ -112,7 +108,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof ArrayDeque)) {
+        if (!(o instanceof Deque)) {
             return false;
         } else if (((ArrayDeque<?>) o).size != size) {
             return false;
