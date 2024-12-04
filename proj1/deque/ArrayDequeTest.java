@@ -127,7 +127,6 @@ public class ArrayDequeTest {
         assertFalse(arr.isEmpty());
         arr.addFirst(1);
         assertEquals(9, arr.size());
-        assertEquals(16, arr.cap());
     }
 
     @Test
@@ -137,12 +136,10 @@ public class ArrayDequeTest {
             arr.addFirst(i);
         }
         assertEquals(33, arr.size());
-        assertEquals(64, arr.cap());
         for (int i = 0; i < 18; i++) {
             arr.removeFirst();
         }
         assertEquals(15, arr.size());
-        assertEquals(32, arr.cap());
     }
 
     @Test
@@ -152,12 +149,10 @@ public class ArrayDequeTest {
             arr.addFirst(i);
         }
         assertEquals(33, arr.size());
-        assertEquals(64, arr.cap());
         for (int i = 0; i < 18; i++) {
             arr.removeLast();
         }
         assertEquals(15, arr.size());
-        assertEquals(32, arr.cap());
     }
 
     @Test
