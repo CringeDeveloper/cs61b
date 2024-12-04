@@ -211,4 +211,18 @@ public class ArrayDequeTest {
             }
         }
     }
+
+    @Test
+    public void iterate() {
+        ArrayDeque<String> arr = new ArrayDeque<String>();
+        int counter = 0;
+        arr.addFirst("hello");
+        arr.addLast("world");
+        arr.addLast("test");
+
+        for (String v : arr) {
+            assertEquals(arr.get(counter), v);
+            counter++;
+        }
+    }
 }

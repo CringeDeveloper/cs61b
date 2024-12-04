@@ -2,9 +2,10 @@ package deque;
 
 import org.hamcrest.Factory;
 
+import java.util.Iterator;
 import java.util.Objects;
 
-public class ArrayDeque<T> {
+public class ArrayDeque<T> implements Iterable<T> {
     private T[] items;
     private int size;
     private int firstNext;
@@ -144,5 +145,27 @@ public class ArrayDeque<T> {
         lastNext = size;
         cap = cap / 2;
         items = newArr;
+    }
+
+    public Iterator<T> iterator() {
+        return new ArrayIterator();
+    }
+
+    private class ArrayIterator implements Iterator<T> {
+        private int seer;
+
+        public  ArrayIterator() {
+            int seer = 0;
+        }
+
+        public boolean hasNext() {
+            return seer < size;
+        }
+
+        public T next() {
+            T returnValue = get(seer);
+            seer++;
+            return returnValue;
+        }
     }
 }

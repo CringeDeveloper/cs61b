@@ -221,4 +221,18 @@ public class LinkedListDequeTest {
         assertTrue(lld1.equals(lld2));
         assertFalse(lld1.equals(lld3));
     }
+
+    @Test
+    public void iterate() {
+        LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
+        int counter = 0;
+        lld1.addFirst("hello");
+        lld1.addLast("world");
+        lld1.addLast("test");
+
+        for (String v : lld1) {
+            assertEquals(lld1.get(counter), v);
+            counter++;
+        }
+    }
 }

@@ -1,8 +1,9 @@
 package deque;
 
+import java.util.Iterator;
 import java.util.Objects;
 
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements Iterable<T> {
     class Node {
         public T item = null;
         public Node next = null;
@@ -134,5 +135,27 @@ public class LinkedListDeque<T> {
         }
 
         return true;
+    }
+
+    public Iterator<T> iterator() {
+        return new LinkedIterator();
+    }
+
+    private class LinkedIterator implements Iterator<T> {
+        private int seer;
+
+        public  LinkedIterator() {
+            int seer = 0;
+        }
+
+        public boolean hasNext() {
+            return seer < size;
+        }
+
+        public T next() {
+            T returnValue = get(seer);
+            seer++;
+            return returnValue;
+        }
     }
 }
