@@ -140,7 +140,7 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
     private class LinkedIterator implements Iterator<T> {
         private int seer;
 
-        public  LinkedIterator() {
+        public LinkedIterator() {
             int seer = 0;
         }
 

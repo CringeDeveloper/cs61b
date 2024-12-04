@@ -174,7 +174,7 @@ public class ArrayDequeTest {
     @Test
     public void equalsLL() {
         ArrayDeque<Integer> arr1 = new ArrayDeque<Integer>();
-        LinkedListDeque<Integer>lld1 = new LinkedListDeque<>();
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
 
         for (int i = 0; i < 100; i++) {
             arr1.addFirst(i);
