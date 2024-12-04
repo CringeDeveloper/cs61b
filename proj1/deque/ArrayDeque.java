@@ -24,10 +24,6 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         return size;
     }
 
-    public int cap() {
-        return cap;
-    }
-
     public void addFirst(T item) {
         if (size == cap) {
             resizeUp();
@@ -110,12 +106,12 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     public boolean equals(Object o) {
         if (!(o instanceof Deque)) {
             return false;
-        } else if (((ArrayDeque<?>) o).size != size) {
+        } else if (((Deque<?>) o).size() != size) {
             return false;
         }
 
         for (int i = 0; i < size; i++) {
-            if (!Objects.equals(((ArrayDeque<?>) o).get(i), get(i))) {
+            if (!Objects.equals(((Deque<?>) o).get(i), get(i))) {
                 return false;
             }
         }

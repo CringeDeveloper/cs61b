@@ -177,6 +177,20 @@ public class ArrayDequeTest {
     }
 
     @Test
+    public void equalsLL() {
+        ArrayDeque<Integer> arr1 = new ArrayDeque<Integer>();
+        LinkedListDeque<Integer>lld1 = new LinkedListDeque<>();
+
+        for (int i = 0; i < 100; i++) {
+            arr1.addFirst(i);
+            lld1.addFirst(i);
+        }
+
+        assertTrue(arr1.equals(lld1));
+        assertTrue(lld1.equals(arr1));
+    }
+
+    @Test
     public void massive() {
         ArrayDeque<Integer> arr = new ArrayDeque<Integer>();
         Random rand = new Random();
