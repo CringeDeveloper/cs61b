@@ -5,7 +5,7 @@ import org.hamcrest.Factory;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class ArrayDeque<T> implements Iterable<T> {
+public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     private T[] items;
     private int size;
     private int firstNext;
@@ -94,6 +94,12 @@ public class ArrayDeque<T> implements Iterable<T> {
 
         size -= 1;
         return items[lastNext];
+    }
+
+    public void printDeque() {
+        for (int i = 0; i < size; i++) {
+            System.out.println(get(i));
+        }
     }
 
     public T get(int index) {
