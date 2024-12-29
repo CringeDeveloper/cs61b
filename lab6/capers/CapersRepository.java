@@ -13,7 +13,6 @@ import static capers.Utils.*;
  *    - dogs/ -- folder containing all of the persistent data for dogs
  *    - story -- file containing the current story
  *
- * TODO: change the above structure if you do something different.
  */
 public class CapersRepository {
     /** Current Working Directory. */
@@ -33,7 +32,11 @@ public class CapersRepository {
      *    - story -- file containing the current story
      */
     public static void setupPersistence() {
-        // TODO
+        File dogs = new File( CAPERS_FOLDER + "/dogs");
+        File story = new File(CAPERS_FOLDER + "/story");
+
+        dogs.mkdirs();
+        story.mkdirs();
     }
 
     /**
@@ -42,10 +45,9 @@ public class CapersRepository {
      * @param text String of the text to be appended to the story
      */
     public static void writeStory(String text) {
-        File directory = new File(".capers/story");
-        directory.mkdirs();
+        setupPersistence();
 
-        File f = new File(".capers/story/data.txt");
+        File f = new File(CAPERS_FOLDER + "/story/data.txt");
         if (!f.exists()) {
             try  {
                 f.createNewFile();
@@ -53,6 +55,7 @@ public class CapersRepository {
                 System.out.println("log: file was not created");
             }
         }
+
         String fileText = Utils.readContentsAsString(f);
         System.out.print(fileText);
         System.out.println(text);
