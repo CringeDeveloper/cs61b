@@ -39,7 +39,7 @@ public class Dog implements Serializable {
      * @return Dog read from file
      */
     public static Dog fromFile(String name) {
-        File in = new File(DOG_FOLDER + "/data.txt");
+        File in = new File(DOG_FOLDER + "/" + name);
         return readObject(in, Dog.class);
     }
 
@@ -56,7 +56,7 @@ public class Dog implements Serializable {
      * Saves a dog to a file for future use.
      */
     public void saveDog() {
-        File out = new File(DOG_FOLDER + "/data.txt");
+        File out = new File(DOG_FOLDER + "/" + this.name);
         writeObject(out, this);
     }
 
