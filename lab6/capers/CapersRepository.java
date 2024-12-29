@@ -1,6 +1,8 @@
 package capers;
 
 import java.io.File;
+import java.io.IOException;
+
 import static capers.Utils.*;
 
 /** A repository for Capers 
@@ -40,7 +42,22 @@ public class CapersRepository {
      * @param text String of the text to be appended to the story
      */
     public static void writeStory(String text) {
-        // TODO
+        File directory = new File(".capers/story");
+        directory.mkdirs();
+
+        File f = new File(".capers/story/data.txt");
+        if (!f.exists()) {
+            try  {
+                f.createNewFile();
+            } catch (IOException e ) {
+                System.out.println("log: file was not created");
+            }
+        }
+        String fileText = Utils.readContentsAsString(f);
+        System.out.print(fileText);
+        System.out.println(text);
+
+        Utils.writeContents(f, fileText + text + "\n");
     }
 
     /**
