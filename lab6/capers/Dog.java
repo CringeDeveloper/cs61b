@@ -39,8 +39,8 @@ public class Dog implements Serializable {
      * @return Dog read from file
      */
     public static Dog fromFile(String name) {
-        // TODO (hint: look at the Utils file)
-        return null;
+        File in = new File(DOG_FOLDER + "/data.txt");
+        return readObject(in, Dog.class);
     }
 
     /**
